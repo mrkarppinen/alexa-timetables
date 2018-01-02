@@ -1,0 +1,11 @@
+{
+  "name": "alexa-timetables",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "alexa-sdk": "^1.0.10",
+    "asyncawait": "^1.0.6",
+    "moment": "^2.20.1",
+    "request": "^2.83.0"
+  }
+}

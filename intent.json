@@ -7,6 +7,9 @@
       "intent": "FollowingStopIntent"
     },
     {
+      "intent": "TimeToNextIntent"
+    },
+    {
       "intent": "AMAZON.HelpIntent"
     },
     {

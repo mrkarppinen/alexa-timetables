@@ -13,29 +13,40 @@ const moment = require('moment');
                 }else {
 
                     let timetable = JSON.parse(body);
-                    
                     let date = moment().utcOffset(2);
                     let time = ( (date.hour() * 60 ) + date.minutes() ) * 60;
 
                     let departures = timetable.content.timetable
                     .filter( (item) => {
                         return item.time > time;
-                    }).map((item) => ({
-                        hour: parseHour(item.time),
-                        minute: parseMinute(item.time),
-                        lines: item.lines,
-                    }));
+                    })
+                    .splice(0, 2)
+                    .map((item) => {
 
+                        let hour = parseHour(item.time);
+                        let minute = parseMinute(item.time);
+                        let diff = calculateDiff(hour, minute, date);
 
-                    let now = departures[0];
-                    let next = departures[1];
-                    let msg = message.replace('{title}', timetable.content.title)
-                    .replace('{line1.title}', now.lines[0])
-                    .replace('{line1.hour}', now.hour)
-                    .replace('{line1.minute}', now.minute)
-                    .replace('{line2.title}', next.lines[0])
-                    .replace('{line2.hour}', next.hour)
-                    .replace('{line2.minute}', next.minute)
+                        return {
+                            hour: hour,
+                            minute: minute,
+                            diff: diff,
+                            lines: item.lines,
+                        };
+
+                    });
+
+                    let msg = message.replace('{title}', timetable.content.title);
+
+                    departures.forEach( (departure, index) => {
+
+                        msg = msg.replace(`{line${index+1}.title}`, departure.lines[0])
+                                 .replace(`{line${index+1}.hour}`, departure.hour)
+                                 .replace(`{line${index+1}.minute}`, departure.minute)
+                                 .replace(`{line${index+1}.diff}`, departure.diff); 
+
+                    });
+          
                     resolve(msg);
 
                 }
@@ -73,4 +84,12 @@ function parseHour(time) {
 
  function parseMinute(time){
     return (`0${Math.floor((time / 60) % 60)}`).slice(-2);
+}
+
+
+function calculateDiff(hour, minute, compare){
+    let time = moment(`${hour}:${minute}`, "HH:mm").utcOffset(2);
+    let diff = time.format('x') - compare.format('x');
+
+    return Math.round( ( diff / 1000) / 60 );
 }

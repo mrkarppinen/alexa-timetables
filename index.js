@@ -5,7 +5,7 @@ const Alexa = require('alexa-sdk');
 
 const APP_ID = undefined; 
 
-const handlers = require('./handlers.js');
+const handlers = require('./handlers.js').handlers;
 
 const languageStrings = {
     'en': {
@@ -17,7 +17,8 @@ const languageStrings = {
             CHECK_SETTINGS_MESSAGE: 'Not able to read your timetable configuration.',
             CHECK_CONF_MESSAGE:'Check your configurations for timetable.',
             NEXT_MESSAGE: 'From {title}, line {line1.title} will leave at {line1.hour} {line1.minute}, after that next is line {line2.title} at {line2.hour} {line2.minute}',
-            FOLLOWING_MESSAGE: 'You\'re following stop {title}'
+            FOLLOWING_MESSAGE: 'You\'re following stop {title}',
+            TIMETO_MESSAGE: 'From {title}, line {line1.title} will leave in {line1.diff} minutes, after that next line {line2.title} leaves in {line2.diff} minutes',
         },
     }
 

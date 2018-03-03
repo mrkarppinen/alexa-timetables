@@ -1,0 +1,37 @@
+{
+    "lists": [
+        {
+            "listId": "list_1_id",
+            "name": "List 1",
+            "state": "active",
+            "version": 1,
+            "statusMap": [
+                {
+                    "href": "url",
+                    "status": "active"
+                },
+                {
+                    "href": "url",	
+                    "status": "completed"
+                }
+    ]
+        },
+
+        {
+            "listId": "list_2_id",
+            "name": "List 2",
+            "state": "active",
+            "version": 1,
+            "statusMap": [
+                {
+                    "href": "url",
+                    "status": "active"
+                },
+                {
+                    "href": "url",
+                    "status": "completed"
+                }
+            ]
+        }
+    ]
+}

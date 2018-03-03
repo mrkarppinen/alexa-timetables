@@ -1,0 +1,21 @@
+{
+    "listId": "list_1_id", 
+    "name":   "List 1", 
+    "state":  "active", 	
+    "version": "1", 	
+    "items":
+    [
+	    {
+            "id": "stop", 
+            "version": "1",
+            "value": "1234",
+            "status": "active", 
+            "createdTime": "Wed Jul 19 23:24:10 UTC 2017", 
+            "updatedTime": "Wed Jul 19 23:24:10 UTC 2017",  
+            "href": "" 
+         }
+    ],
+    "links": {
+        "next": "v2/lists/{listId}/{status}?nextToken={nextToken}"
+    }
+}

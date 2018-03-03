@@ -5,7 +5,7 @@ const Alexa = require('alexa-sdk');
 
 const APP_ID = undefined; 
 
-const handlers = require('./handlers.js').handlers;
+const handlers = require('./lib/handlers').handlers;
 
 const languageStrings = {
     'en': {
